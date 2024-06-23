@@ -1,0 +1,71 @@
+<div class="nav-bar">
+    <img src="../../assets/a1.jpeg"alt="">
+    <div class="nav-items">
+        <ul >
+            <li>
+                <a routerLink="/welcome" >Home</a>
+            </li>
+            <li>
+                <a routerLink="/about-us" *ngIf="this.dataService.isAdmin != true" >About Us</a>
+            </li>
+            <li>
+                <a *ngIf="this.dataService.isAdmin != true" (click)="goToJobs()">Jobs for you</a>
+            </li>
+            <li>
+                <a *ngIf="this.dataService.isAdmin != true" (click)="goToAddJob()" >Add a Job</a>
+            </li>
+            <li>
+                <a *ngIf="this.dataService.showLogIn" routerLink="login">Log In</a>
+            </li>
+            <li>
+                <a  *ngIf="this.dataService.showLogIn" routerLink="signup">Sign Up</a>
+            </li>
+
+            <li>
+                <a  *ngIf="this.dataService.isAdmin" routerLink="/employers-list">Employers</a>
+            </li>
+
+            <li>
+                <a  *ngIf="this.dataService.isAdmin" routerLink="/graduates-list">Graduates</a>
+            </li>
+
+            <li>
+                <a  *ngIf="this.dataService.isAdmin" routerLink="/jobs-list">Jobs</a>
+            </li>
+
+            <li *ngIf="this.dataService.userLoggedIn && this.dataService.userData.role.roleTitle=='employer' ">
+                <p class="messages">Appointments</p>
+                <div class="submenu">
+                    <ul>
+                        <li><a (click)="openAccepted()" >Accepted</a></li>
+                        <li><a (click)="openPending()" >Pending</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li *ngIf="this.dataService.userLoggedIn" >
+                <p class="messages" >Messages</p>
+                <div class="submenu">
+                    <ul>
+                        <li><a (click)="openInbox()" >Inbox</a></li>
+                        <li><a (click)="openOutbox()" >Out Box</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <div class="logout-area" *ngIf="this.dataService.userLoggedIn">
+                    <a  *ngIf="this.dataService.isAdmin" class="logOut" (click)="logOut()">Log Out</a>
+                    <a (click)="openProfile()" >
+                        <i class="fa-regular fa-user" *ngIf="this.dataService.isAdmin != true" ></i>
+                    </a>
+                </div>
+            </li>
+
+
+            
+        </ul>
+    </div>
+    
+</div>
+<br><br><br>
